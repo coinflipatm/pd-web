@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import { PHONE, PHONE_LINK, BRAND } from '../lib/cities.js';
+
+const { city } = Astro.props;
+const year = new Date().getFullYear();
+const phoneSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>`;
+---
+
+<Base title={city.meta.title} description={city.meta.description} canonical={`https://towtruck.cv/${city.slug}`}>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="/logo.svg" alt={BRAND} width="44" height="44" />
+        <div class="header-brand">Professional <span>Dispatch</span></div>
+      </a>
+      <a href={PHONE_LINK} class="header-phone">
+        <Fragment set:html={phoneSvg} />
+        {PHONE}
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Dispatchers Available Now
+      </div>
+      <h1>Need a Tow in <em>{city.name}</em>?<br />Help Is on the Way.</h1>
+      <p class="hero-sub">{city.description}</p>
+      <div>
+        <a href={PHONE_LINK} class="btn-call">
+          <Fragment set:html={phoneSvg} />
+          Call Now — {PHONE}
+        </a>
+        <p class="hero-trust">Average dispatch time under 30 minutes · No hidden fees</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-items">
+      <div class="trust-item"><div class="trust-icon">✓</div> 24/7 Availability</div>
+      <div class="trust-item"><div class="trust-icon">✓</div> Licensed & Insured</div>
+      <div class="trust-item"><div class="trust-icon">✓</div> Fair, Upfront Pricing</div>
+      <div class="trust-item"><div class="trust-icon">✓</div> All Vehicle Types</div>
+      <div class="trust-item"><div class="trust-icon">✓</div> Fast Response Time</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <p class="section-label">Our Services</p>
+    <h2 class="section-title">Towing & Roadside Assistance in {city.name}</h2>
+    <div class="services-grid">
+      {city.services.map((service) => (
+        <div class="service-card">
+          <h3>{service.name}</h3>
+          <p>{service.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="areas">
+    <p class="section-label">Service Areas</p>
+    <h2 class="section-title">We Cover {city.name} & Surrounding Areas</h2>
+    <div class="areas-list">
+      {city.areas.map((area) => (
+        <span class="area-tag">{area}</span>
+      ))}
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="cta-section">
+    <h2>Stranded? Don't Wait.</h2>
+    <p>One call. Fast dispatch. Fair price. That's it.</p>
+    <a href={PHONE_LINK} class="btn-call">
+      <Fragment set:html={phoneSvg} />
+      Call {PHONE}
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; {year} {BRAND}. All rights reserved. <a href={PHONE_LINK}>{PHONE}</a></p>
+  </footer>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-cta">
+    <a href={PHONE_LINK}>
+      <Fragment set:html={phoneSvg} />
+      Tap to Call — {PHONE}
+    </a>
+  </div>
+
+  <!-- LOCAL BUSINESS SCHEMA -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": BRAND,
+    "telephone": "+18105454201",
+    "url": `https://towtruck.cv/${city.slug}`,
+    "areaServed": city.areas.map(a => ({ "@type": "City", "name": a })),
+    "serviceType": city.services.map(s => s.name),
+    "openingHours": "Mo-Su 00:00-23:59",
+    "priceRange": "$$",
+  })} />
+
+</Base>
