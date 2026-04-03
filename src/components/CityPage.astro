@@ -1,127 +1,141 @@
 ---
 import Base from '../layouts/Base.astro';
-import { PHONE, PHONE_LINK, BRAND } from '../lib/cities.js';
+import { PHONE, PHONE_LINK, BRAND, TAGLINE, services, trustSignals } from '../lib/cities.js';
 
 const { city } = Astro.props;
 const year = new Date().getFullYear();
-const phoneSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>`;
-
-const serviceIcons = {
-  'Emergency Towing': `<svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
-  'Lockout Service': `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
-  'Jump Start': `<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-  'Flat Tire Change': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>`,
-  'Fuel Delivery': `<svg viewBox="0 0 24 24"><path d="M3 22V6a2 2 0 012-2h8a2 2 0 012 2v16"/><path d="M15 10h2a2 2 0 012 2v2a2 2 0 002 2h0"/><rect x="6" y="8" width="6" height="5" rx="1"/><line x1="3" y1="22" x2="15" y2="22"/></svg>`,
-  'Accident Recovery': `<svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-};
+const phoneSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>`;
 ---
 
-<Base title={city.meta.title} description={city.meta.description} canonical={`https://towtruck.cv/${city.slug}`}>
+<Base title={city.meta.title} description={city.meta.description} canonical={`https://towtruck.cv/${city.slug === 'michigan' ? '' : city.slug}`}>
 
   <!-- HEADER -->
   <header class="header">
     <div class="header-inner">
-      <a href="/" class="header-logo">
-        <img src="/logo.svg" alt={BRAND} width="40" height="40" />
-        <div class="header-brand">Professional <span>Dispatch</span></div>
-      </a>
-      <a href={PHONE_LINK} class="header-phone">
-        <Fragment set:html={phoneSvg} />
-        {PHONE}
-      </a>
+      <div class="header-brand">
+        <div class="header-name">{BRAND}</div>
+        <div class="header-tagline">{TAGLINE}</div>
+      </div>
+      <div class="header-phone">
+        <a href={PHONE_LINK}>
+          <Fragment set:html={phoneSvg} />
+          {PHONE}
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Dispatchers Available Now
-      </div>
-      <h1>Need a Tow in <em>{city.name}</em>?<br />Help Is on the Way.</h1>
+    <div class="container">
+      <div class="hero-badge">Serving {city.isState ? 'All of Michigan' : `${city.name}, ${city.state}`}</div>
+      <h1>{city.isState ? (
+        <>Heavy Equipment<br /><span>Hauling & Transport</span></>
+      ) : (
+        <>{city.name} <span>Heavy Equipment Hauling</span></>
+      )}</h1>
       <p class="hero-sub">{city.description}</p>
-      <div class="hero-cta-wrap">
-        <a href={PHONE_LINK} class="btn-call">
-          <Fragment set:html={phoneSvg} />
-          Call Now — {PHONE}
-        </a>
-        <div class="hero-trust">
-          <span>Average dispatch under 30 min</span>
-          <span class="hero-trust-dot"></span>
-          <span>No hidden fees</span>
-          <span class="hero-trust-dot"></span>
-          <span>All major insurance accepted</span>
-        </div>
-      </div>
+      <a href={PHONE_LINK} class="hero-cta">
+        <Fragment set:html={phoneSvg} />
+        Call for a Free Quote
+      </a>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stats-items">
-      <div class="stat-item">
-        <div class="stat-number">24<span>/7</span></div>
-        <div class="stat-label">Always Available</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number"><span>&lt;</span>30 min</div>
-        <div class="stat-label">Avg Response</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100<span>%</span></div>
-        <div class="stat-label">Licensed & Insured</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">5<span>★</span></div>
-        <div class="stat-label">Customer Rated</div>
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-items">
+        {trustSignals.map(s => <div class="trust-item">{s}</div>)}
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- SERVICES -->
   <section class="services">
-    <p class="section-label">What We Do</p>
-    <h2 class="section-title">Towing & Roadside in {city.name}</h2>
-    <p class="section-subtitle">One call handles it all — from a dead battery to a full accident recovery.</p>
-    <div class="services-grid">
-      {city.services.map((service) => (
-        <div class="service-card">
-          <div class="service-icon">
-            <Fragment set:html={serviceIcons[service.name] || phoneSvg} />
+    <div class="container">
+      <div class="section-label">What We Haul</div>
+      <h2 class="section-title">Equipment Transport Services</h2>
+      <div class="services-grid">
+        {services.map(s => (
+          <div class="service-card">
+            <div class="service-icon">{s.icon}</div>
+            <h3>{s.name}</h3>
+            <p>{s.desc}</p>
           </div>
-          <h3>{service.name}</h3>
-          <p>{service.desc}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / CAPABILITY -->
+  <section class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Built for Michigan Heavy Haul</h2>
+          <p>
+            We're not a broker. We're not a dispatch service routing your call to the cheapest available truck. <strong>We own the equipment. We do the work.</strong>
+          </p>
+          <p>
+            Our fleet includes hydraulic recovery trailers rated for Michigan's maximum legal weight — up to <strong>164,000 lbs</strong> with proper axle configuration. We have hands-on experience operating SkyTraks, telehandlers with attachments, and man boxes. When we load your equipment, we know exactly what we're handling.
+          </p>
+          <p>
+            One call. We show up, load, secure, transport, and deliver. No middleman, no markup from a dispatch broker. Direct service at direct pricing.
+          </p>
         </div>
-      ))}
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">164K</div>
+            <div class="stat-label">Max LBS in Michigan</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">7/7</div>
+            <div class="stat-label">Days a Week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">Direct</div>
+            <div class="stat-label">Owner-Operated</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">MI</div>
+            <div class="stat-label">DOT Compliant</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- AREAS -->
-  <section class="areas">
-    <p class="section-label">Coverage Area</p>
-    <h2 class="section-title">{city.name} & Surrounding Areas</h2>
-    <p class="section-subtitle">Serving the full {city.name} metro — if you're nearby, we can get to you.</p>
-    <div class="areas-list">
-      {city.areas.map((area) => (
-        <span class="area-tag">{area}</span>
-      ))}
+  <!-- AREA COVERAGE -->
+  <section class="coverage">
+    <div class="container">
+      <div class="section-label">Service Area</div>
+      <h2 class="section-title">{city.isState ? 'Statewide Coverage' : `${city.name} & Surrounding Areas`}</h2>
+      <div class="coverage-text">
+        <div class="area-tags">
+          {city.areas.map(a => <span class="area-tag">{a}</span>)}
+        </div>
+        <div class="route-tags" style="margin-top: 16px;">
+          {city.interstates.map(r => <span class="route-tag">{r}</span>)}
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- BOTTOM CTA -->
+  <!-- CTA -->
   <section class="cta-section">
-    <h2>Stranded? Don't Wait.</h2>
-    <p>One call. Fast dispatch. Fair price. That's it.</p>
-    <a href={PHONE_LINK} class="btn-call">
-      <Fragment set:html={phoneSvg} />
-      Call {PHONE}
-    </a>
+    <div class="container">
+      <h2>Get a Quote. Get It Moved.</h2>
+      <p class="cta-sub">Tell us what you need hauled and where it's going. We'll give you a straight price.</p>
+      <a href={PHONE_LINK} class="hero-cta">
+        <Fragment set:html={phoneSvg} />
+        Call {PHONE}
+      </a>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-brand">Professional <span>Dispatch</span></div>
     <p>&copy; {year} {BRAND}. All rights reserved. <a href={PHONE_LINK}>{PHONE}</a></p>
   </footer>
 
@@ -129,21 +143,22 @@ const serviceIcons = {
   <div class="mobile-cta">
     <a href={PHONE_LINK}>
       <Fragment set:html={phoneSvg} />
-      Tap to Call — {PHONE}
+      Call {PHONE}
     </a>
   </div>
 
-  <!-- LOCAL BUSINESS SCHEMA -->
+  <!-- SCHEMA: LOCAL BUSINESS -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": BRAND,
+    "description": city.meta.description,
     "telephone": "+18105454201",
-    "url": `https://towtruck.cv/${city.slug}`,
+    "url": `https://towtruck.cv/${city.slug === 'michigan' ? '' : city.slug}`,
     "areaServed": city.areas.map(a => ({ "@type": "City", "name": a })),
-    "serviceType": city.services.map(s => s.name),
+    "serviceType": services.map(s => s.name),
     "openingHours": "Mo-Su 00:00-23:59",
-    "priceRange": "$$",
+    "priceRange": "$$$",
   })} />
 
 </Base>
