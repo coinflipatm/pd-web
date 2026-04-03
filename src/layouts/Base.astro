@@ -55,9 +55,16 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
       color: var(--steel-200);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    img, svg { max-width: 100%; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 24px);
+    }
 
     /* ── HEADER ─────────────────────────────────────── */
     .header {
@@ -173,6 +180,7 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
     .hero-cta {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       background: var(--amber-500);
       color: var(--steel-950);
@@ -185,6 +193,7 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
       text-transform: uppercase;
       letter-spacing: 0.04em;
       transition: background 0.2s, transform 0.15s;
+      text-align: center;
     }
     .hero-cta:hover { background: var(--amber-400); transform: translateY(-1px); }
     .hero-cta svg { width: 22px; height: 22px; }
@@ -426,6 +435,10 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
     .footer p { color: var(--steel-500); font-size: 0.85rem; }
     .footer a { color: var(--amber-400); text-decoration: none; }
 
+    @media (min-width: 641px) {
+      .mobile-cta { display: none !important; }
+    }
+
     /* ── MOBILE STICKY CTA ─────────────────────────── */
     .mobile-cta {
       display: none;
@@ -462,6 +475,11 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
       .hero { padding: 50px 0 60px; }
       .hero h1 { font-size: 2rem; }
       .hero-sub { font-size: 1rem; }
+      .hero-cta {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 14px 16px;
+      }
       .services-grid { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr 1fr; }
       .trust-items { gap: 8px 20px; }
@@ -471,6 +489,24 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
       body { padding-bottom: 60px; }
       .cta-section { padding: 50px 0; }
       .header-phone a { font-size: 0.95rem; padding: 8px 16px; }
+      .area-tag,
+      .route-tag { font-size: 0.75rem; }
+    }
+
+    @media (max-width: 420px) {
+      .header-inner {
+        justify-content: center;
+      }
+      .header-phone {
+        width: 100%;
+      }
+      .header-phone a {
+        width: 100%;
+        justify-content: center;
+      }
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
