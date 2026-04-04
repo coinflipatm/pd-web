@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://towtruck.cv/sitemap-index.xml
