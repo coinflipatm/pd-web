@@ -1,6 +1,6 @@
 // ── BRAND & CONTACT ────────────────────────────────────
-export const PHONE = '(810) 545-4201';
-export const PHONE_LINK = 'tel:+18105454201';
+export const PHONE = '(810) 394-5937';
+export const PHONE_LINK = 'tel:+18103945937';
 export const BRAND = 'Stinger Heavy Haul';
 export const TAGLINE = 'Michigan Equipment Transport';
 export const DOMAIN = 'towtruck.cv';
