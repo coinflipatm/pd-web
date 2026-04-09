@@ -180,7 +180,7 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
     @media(max-width:640px){
       .hero{min-height:auto;align-items:flex-start;}
       .hero-overlay{background:linear-gradient(180deg,rgba(10,12,15,.75) 0%,rgba(10,12,15,.55) 55%,transparent 100%);}
-      .hero-bg img{object-position:center 60%;}
+      .hero-bg img{object-fit:contain;object-position:center bottom;background:var(--bg);}
       .hero h1{font-size:2rem;text-shadow:0 2px 12px rgba(0,0,0,.7);}
       .hero-sub{font-size:.95rem;text-shadow:0 1px 6px rgba(0,0,0,.5);margin-bottom:20px;}
       .hero-badge{text-shadow:none;}
