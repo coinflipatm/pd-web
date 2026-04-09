@@ -178,9 +178,11 @@ import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
       .fleet-wide{grid-column:span 1;}
     }
     @media(max-width:640px){
-      .hero{min-height:420px;}
-      .hero h1{font-size:2rem;}
-      .hero-sub{font-size:.95rem;}
+      .hero{min-height:auto;}
+      .hero-overlay{background:linear-gradient(180deg,rgba(10,12,15,.6) 0%,rgba(10,12,15,.45) 40%,rgba(10,12,15,.7) 100%);}
+      .hero h1{font-size:2rem;text-shadow:0 2px 12px rgba(0,0,0,.7);}
+      .hero-sub{font-size:.95rem;text-shadow:0 1px 6px rgba(0,0,0,.5);}
+      .hero-badge{text-shadow:none;}
       .hero-content{padding:50px 0 60px;}
       .move-grid{grid-template-columns:1fr;}
       .fleet-stats{grid-template-columns:1fr 1fr;}
