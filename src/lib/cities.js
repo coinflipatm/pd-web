@@ -56,25 +56,57 @@ export const trustSignals = [
 ];
 
 // ── CITY DATA ──────────────────────────────────────────
-// Focused on the SE Michigan construction belt:
-// Oakland County, Livingston County, Washtenaw County, Western Wayne
-// This is where subdivision builders run SkyTraks and heavy equipment daily.
+// Based in Flint, Genesee County — primary SEO target.
+// Other counties still serviced and have their own pages.
 export const cities = {
   michigan: {
-    name: 'Michigan',
+    name: 'Genesee County',
     state: 'MI',
-    slug: 'michigan',
-    isState: true,
-    tagline: 'Heavy Equipment Hauling Across Southeast Michigan',
-    description: `${BRAND} provides heavy equipment hauling across Southeast Michigan's construction corridor. We transport SkyTraks with attachments and man boxes, telehandlers, excavators, and heavy machinery between job sites. Hydraulic recovery trailers rated for Michigan's maximum weight limits. Owner-operated — not a broker.`,
+    slug: '',
+    isState: false,
+    tagline: 'Heavy Equipment Hauling in Flint & Genesee County',
+    description: `${BRAND} is based in Flint, Michigan and provides heavy equipment hauling across Genesee County and surrounding areas. We transport SkyTraks with attachments and man boxes, telehandlers, excavators, and heavy machinery between job sites. Owner-operated — not a broker.`,
     areas: [
-      'Novi', 'Brighton', 'Ann Arbor', 'Troy', 'Rochester Hills',
-      'Canton', 'Plymouth', 'Howell', 'South Lyon', 'Northville',
+      'Flint', 'Grand Blanc', 'Fenton', 'Davison', 'Burton',
+      'Flushing', 'Swartz Creek', 'Clio', 'Mt. Morris', 'Linden',
     ],
-    interstates: ['I-96', 'US-23', 'I-275', 'I-75', 'I-94', 'M-14'],
+    interstates: ['I-75', 'I-69', 'I-475', 'US-23', 'M-15'],
     meta: {
-      title: `Heavy Equipment Hauling Michigan | ${BRAND}`,
-      description: `Heavy equipment hauling across SE Michigan. SkyTrak transport, telehandlers, excavators, construction equipment. Hydraulic recovery. Up to 164,000 lbs. Call ${PHONE}.`,
+      title: `Heavy Equipment Hauling Flint MI & Genesee County | ${BRAND}`,
+      description: `Heavy equipment hauling in Flint, MI and Genesee County. SkyTrak transport, telehandlers, excavators, construction equipment. Same-day dispatch. Call ${PHONE}.`,
+    },
+  },
+  flint: {
+    name: 'Flint',
+    state: 'MI',
+    slug: 'flint',
+    tagline: 'Heavy Equipment Hauling in Flint, Michigan',
+    description: `${BRAND} is headquartered in Flint, MI. We provide heavy equipment hauling throughout Flint and the surrounding Genesee County area — SkyTraks, telehandlers, excavators, skid steers, and construction machinery moved between job sites. Local dispatch means the fastest response times in the area.`,
+    areas: [
+      'Flint', 'Burton', 'Mt. Morris', 'Beecher', 'Flint Twp',
+      'Genesee Twp', 'Grand Blanc', 'Swartz Creek', 'Flushing', 'Clio',
+    ],
+    interstates: ['I-75', 'I-69', 'I-475', 'US-23', 'M-21'],
+    meta: {
+      title: `Heavy Equipment Hauling Flint MI | ${BRAND}`,
+      description: `Heavy equipment hauling in Flint, Michigan. SkyTrak transport, telehandlers, excavators. Local dispatch from Flint. Call ${PHONE}.`,
+    },
+  },
+  'genesee-county': {
+    name: 'Genesee County',
+    state: 'MI',
+    slug: 'genesee-county',
+    tagline: 'Heavy Equipment Hauling in Genesee County',
+    description: `${BRAND} provides heavy equipment hauling across all of Genesee County — Flint, Grand Blanc, Fenton, Davison, Burton, Flushing, Swartz Creek, Clio, Linden, and surrounding townships. Based locally with fast dispatch for construction equipment moves.`,
+    areas: [
+      'Flint', 'Grand Blanc', 'Fenton', 'Davison', 'Burton',
+      'Flushing', 'Swartz Creek', 'Clio', 'Mt. Morris', 'Linden',
+      'Montrose', 'Goodrich', 'Otisville', 'Gaines', 'Argentine Twp',
+    ],
+    interstates: ['I-75', 'I-69', 'I-475', 'US-23', 'M-15', 'M-21'],
+    meta: {
+      title: `Heavy Equipment Hauling Genesee County MI | ${BRAND}`,
+      description: `Heavy equipment hauling in Genesee County MI. Flint, Grand Blanc, Fenton, Davison, Burton. Construction equipment, SkyTraks, telehandlers. Call ${PHONE}.`,
     },
   },
   'oakland-county': {
