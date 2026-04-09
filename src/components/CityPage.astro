@@ -1,167 +1,87 @@
 ---
 import Base from '../layouts/Base.astro';
-import { PHONE, PHONE_LINK, BRAND, TAGLINE, services, trustSignals } from '../lib/cities.js';
-
+import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
 const { city } = Astro.props;
 const year = new Date().getFullYear();
 const phoneSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>`;
 ---
+<Base title={city.meta.title} description={city.meta.description} canonical={`https://towtruck.cv/${city.slug}`}>
 
-<Base title={city.meta.title} description={city.meta.description} canonical={`https://towtruck.cv/${city.slug === 'michigan' ? '' : city.slug}`}>
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="header-brand">
-        <img src="/logo.svg" alt="Stinger Heavy Haul - Skeeter the Mosquitow" class="header-logo" />
-        <div class="header-text">
-          <div class="header-name">{BRAND}</div>
-          <div class="header-tagline">{TAGLINE}</div>
-        </div>
-      </div>
-      <div class="header-phone">
-        <a href={PHONE_LINK}>
-          <Fragment set:html={phoneSvg} />
-          {PHONE}
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">Serving {city.isState ? 'All of Michigan' : `${city.name}, ${city.state}`}</div>
-      <h1>{city.isState ? (
-        <>Heavy Equipment<br /><span>Hauling & Transport</span></>
-      ) : (
-        <>{city.name} <span>Heavy Equipment Hauling</span></>
-      )}</h1>
-      <p class="hero-sub">{city.description}</p>
-      <a href={PHONE_LINK} class="hero-cta">
-        <Fragment set:html={phoneSvg} />
-        Call for a Free Quote
-      </a>
-    </div>
-  </section>
-
-  <!-- TRUST BAR -->
-  <section class="trust-bar">
-    <div class="container">
-      <div class="trust-items">
-        {trustSignals.map(s => <div class="trust-item">{s}</div>)}
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services">
-    <div class="container">
-      <div class="section-label">What We Haul</div>
-      <h2 class="section-title">Equipment Transport Services</h2>
-      <div class="services-grid">
-        {services.map(s => (
-          <div class="service-card">
-            <div class="service-icon">{s.icon}</div>
-            <h3>{s.name}</h3>
-            <p>{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT / CAPABILITY -->
-  <section class="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2>Built for Michigan Heavy Haul</h2>
-          <p>
-            We're not a broker. We're not a dispatch service routing your call to the cheapest available truck. <strong>We own the equipment. We do the work.</strong>
-          </p>
-          <p>
-            Our fleet includes hydraulic recovery trailers rated for Michigan's maximum legal weight — up to <strong>164,000 lbs</strong> with proper axle configuration. We have hands-on experience operating SkyTraks, telehandlers with attachments, and man boxes. When we load your equipment, we know exactly what we're handling.
-          </p>
-          <p>
-            One call. We show up, load, secure, transport, and deliver. No middleman, no markup from a dispatch broker. Direct service at direct pricing.
-          </p>
-        </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <div class="stat-number">164K</div>
-            <div class="stat-label">Max LBS in Michigan</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">7/7</div>
-            <div class="stat-label">Days a Week</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">Direct</div>
-            <div class="stat-label">Owner-Operated</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">MI</div>
-            <div class="stat-label">DOT Compliant</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AREA COVERAGE -->
-  <section class="coverage">
-    <div class="container">
-      <div class="section-label">Service Area</div>
-      <h2 class="section-title">{city.isState ? 'Statewide Coverage' : `${city.name} & Surrounding Areas`}</h2>
-      <div class="coverage-text">
-        <div class="area-tags">
-          {city.areas.map(a => <span class="area-tag">{a}</span>)}
-        </div>
-        <div class="route-tags" style="margin-top: 16px;">
-          {city.interstates.map(r => <span class="route-tag">{r}</span>)}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Get a Quote. Get It Moved.</h2>
-      <p class="cta-sub">Tell us what you need hauled and where it's going. We'll give you a straight price.</p>
-      <a href={PHONE_LINK} class="hero-cta">
-        <Fragment set:html={phoneSvg} />
-        Call {PHONE}
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>&copy; {year} {BRAND}. All rights reserved. <a href={PHONE_LINK}>{PHONE}</a></p>
-  </footer>
-
-  <!-- MOBILE STICKY CTA -->
-  <div class="mobile-cta">
-    <a href={PHONE_LINK}>
-      <Fragment set:html={phoneSvg} />
-      Call {PHONE}
-    </a>
+<header class="header"><div class="header-inner">
+  <div class="header-brand">
+    <img src="/logo.svg" alt={BRAND} class="header-logo" />
+    <div class="header-text"><div class="header-name">{BRAND}</div><div class="header-tagline">{TAGLINE}</div></div>
   </div>
+  <div class="header-phone"><a href={PHONE_LINK}><Fragment set:html={phoneSvg} />{PHONE}</a></div>
+</div></header>
 
-  <!-- SCHEMA: LOCAL BUSINESS -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": BRAND,
-    "description": city.meta.description,
-    "telephone": "+18103945937",
-    "url": `https://towtruck.cv/${city.slug === 'michigan' ? '' : city.slug}`,
-    "areaServed": city.areas.map(a => ({ "@type": "City", "name": a })),
-    "serviceType": services.map(s => s.name),
-    "openingHours": "Mo-Su 00:00-23:59",
-    "priceRange": "$$$",
-  })} />
+<section class="hero">
+  <div class="hero-bg"><img src="/img/skytrak-subdivision.jpg" alt="Heavy equipment hauling in {city.name}" /></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">Serving {city.name}, {city.state}</div>
+    <h1>{city.name} <span>Heavy Equipment Hauling</span></h1>
+    <p class="hero-sub">{city.description}</p>
+    <a href={PHONE_LINK} class="btn-primary"><Fragment set:html={phoneSvg} />Call for a Free Quote</a>
+  </div>
+</section>
 
+<section class="cred-bar"><div class="container"><div class="cred-items">
+  <div class="cred-item"><div class="cred-number">15+</div><div class="cred-label">Truck Fleet</div></div>
+  <div class="cred-divider"></div>
+  <div class="cred-item"><div class="cred-number">USDOT</div><div class="cred-label">#2573313</div></div>
+  <div class="cred-divider"></div>
+  <div class="cred-item"><div class="cred-number">24/7</div><div class="cred-label">Dispatch</div></div>
+  <div class="cred-divider"></div>
+  <div class="cred-item"><div class="cred-number">COI</div><div class="cred-label">On Request</div></div>
+</div></div></section>
+
+<section class="wwm"><div class="container">
+  <div class="section-label">What We Haul</div>
+  <h2 class="section-title">Equipment Transport Services</h2>
+  <div class="move-grid">
+    <div class="move-card"><h3>Telehandlers & SkyTraks</h3><p>With attachments, man boxes, and forks. We operate these machines — we know how to load and secure them.</p></div>
+    <div class="move-card"><h3>Skid Steers & Track Loaders</h3><p>Compact track loaders, skid steers, and mini equipment.</p></div>
+    <div class="move-card"><h3>Excavators</h3><p>Mini excavators through mid-size. CAT, Kubota, John Deere, Case.</p></div>
+    <div class="move-card"><h3>Forklifts & Rough Terrain</h3><p>Warehouse forklifts, rough terrain forklifts, and all-terrain units.</p></div>
+    <div class="move-card"><h3>Scissor & Boom Lifts</h3><p>Aerial work platforms, scissor lifts, articulating boom lifts.</p></div>
+    <div class="move-card"><h3>Containers & Oversized</h3><p>Shipping containers, storage units, gang boxes, and oversized loads up to 40,000 lbs.</p></div>
+  </div>
+</div></section>
+
+<section class="fleet"><div class="container">
+  <div class="section-label">Our Equipment</div>
+  <h2 class="section-title">The Fleet</h2>
+  <div class="fleet-grid">
+    <div class="fleet-photo fleet-wide"><img src="/img/freightliner-trailer.jpg" alt="Freightliner with Landoll trailer" loading="lazy" /><div class="fleet-cap">Freightliner with Kalyn Siebert Landoll Trailer</div></div>
+    <div class="fleet-photo"><img src="/img/excavator-boomlift.jpg" alt="Excavator and boom lift on trailer" loading="lazy" /><div class="fleet-cap">Excavator + Boom Lift Move</div></div>
+    <div class="fleet-photo"><img src="/img/container-haul.jpg" alt="Container transport" loading="lazy" /><div class="fleet-cap">Container Transport</div></div>
+  </div>
+</div></section>
+
+<section class="area"><div class="container">
+  <div class="section-label">Service Area</div>
+  <h2 class="section-title">{city.name} & Surrounding Areas</h2>
+  <div class="area-tags">
+    {city.areas.map((a: string) => <span class="area-tag">{a}</span>)}
+  </div>
+  <div class="route-tags">
+    {city.interstates.map((r: string) => <span class="route-tag">{r}</span>)}
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="container" style="text-align:center;max-width:600px;">
+  <h2 class="contact-title" style="text-align:center;">Get a Quote. Get It Moved.</h2>
+  <p style="color:var(--text2);margin-bottom:30px;">Tell us what you need hauled and where it's going. Firm quote before we roll.</p>
+  <a href={PHONE_LINK} class="btn-primary" style="margin-bottom:16px;"><Fragment set:html={phoneSvg} />Call {PHONE}</a>
+  <p style="color:var(--text3);font-size:.9rem;">or email <a href="mailto:admin@itowtruck.com" style="color:var(--amber2);">admin@itowtruck.com</a></p>
+</div></section>
+
+<footer class="footer"><div class="container">
+  <p style="text-align:center;color:var(--text4);font-size:.85rem;">&copy; {year} iTow and Servicetek LLC. All rights reserved. <a href={PHONE_LINK} style="color:var(--amber2);text-decoration:none;">{PHONE}</a></p>
+</div></footer>
+
+<div class="mobile-cta"><a href={PHONE_LINK}><Fragment set:html={phoneSvg} />Call {PHONE}</a></div>
+
+<script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"Stinger Heavy Haul","telephone":"+18103945937","url":`https://towtruck.cv/${city.slug}`,"areaServed":city.areas.map((a: string) => ({"@type":"City","name":a})),"openingHours":"Mo-Su 00:00-23:59","priceRange":"$$$"})} />
 </Base>

@@ -1,5 +1,172 @@
 ---
-import CityPage from '../components/CityPage.astro';
-import { cities } from '../lib/cities.js';
+import Base from '../layouts/Base.astro';
+import { PHONE, PHONE_LINK, BRAND, TAGLINE } from '../lib/cities.js';
+const year = new Date().getFullYear();
+const phoneSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>`;
+const mailSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`;
 ---
-<CityPage city={cities.michigan} />
+<Base title="Heavy Equipment Hauling Michigan | Stinger Heavy Haul" description="Construction equipment hauling across Southeast Michigan. SkyTraks, telehandlers, excavators. 15+ truck fleet. DOT authorized. Same-day dispatch. Call (810) 394-5937." canonical="https://towtruck.cv">
+
+<header class="header"><div class="header-inner">
+  <div class="header-brand">
+    <img src="/logo.svg" alt="Stinger Heavy Haul" class="header-logo" />
+    <div class="header-text"><div class="header-name">{BRAND}</div><div class="header-tagline">{TAGLINE}</div></div>
+  </div>
+  <div class="header-phone"><a href={PHONE_LINK}><Fragment set:html={phoneSvg} />{PHONE}</a></div>
+</div></header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><img src="/img/skytrak-subdivision.jpg" alt="SkyTrak on trailer at subdivision job site" /></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">DOT Authorized Motor Carrier • USDOT #2573313</div>
+    <h1>Construction Equipment<br /><span>Transport</span></h1>
+    <p class="hero-sub">Southeast Michigan's owner-operated heavy haul fleet. Semi trucks with Landoll trailers — SkyTraks, telehandlers, excavators, and construction machinery moved between job sites. Same-day dispatch available.</p>
+    <div class="hero-actions">
+      <a href={PHONE_LINK} class="btn-primary"><Fragment set:html={phoneSvg} />Call {PHONE}</a>
+      <a href="#contact" class="btn-secondary"><Fragment set:html={mailSvg} />Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS BAR -->
+<section class="cred-bar"><div class="container"><div class="cred-items">
+  <div class="cred-item"><div class="cred-number">15+</div><div class="cred-label">Truck Fleet</div></div>
+  <div class="cred-divider"></div>
+  <div class="cred-item"><div class="cred-number">USDOT</div><div class="cred-label">#2573313</div></div>
+  <div class="cred-divider"></div>
+  <div class="cred-item"><div class="cred-number">24/7</div><div class="cred-label">Dispatch</div></div>
+  <div class="cred-divider"></div>
+  <div class="cred-item"><div class="cred-number">COI</div><div class="cred-label">On Request</div></div>
+</div></div></section>
+
+<!-- WHAT WE MOVE -->
+<section class="wwm" id="services"><div class="container">
+  <div class="section-label">Capabilities</div>
+  <h2 class="section-title">What We Move</h2>
+  <div class="move-grid">
+    <div class="move-card"><h3>Telehandlers & SkyTraks</h3><p>With attachments, man boxes, and forks. We operate these machines — we know how to load and secure them.</p></div>
+    <div class="move-card"><h3>Skid Steers & Track Loaders</h3><p>Compact track loaders, skid steers, and mini equipment. Loaded by machine on deck.</p></div>
+    <div class="move-card"><h3>Excavators</h3><p>Mini excavators through mid-size. CAT, Kubota, John Deere, Case — we've moved them all.</p></div>
+    <div class="move-card"><h3>Forklifts & Rough Terrain</h3><p>Warehouse forklifts, rough terrain forklifts, and all-terrain units between sites and equipment yards.</p></div>
+    <div class="move-card"><h3>Scissor & Boom Lifts</h3><p>Aerial work platforms, scissor lifts, articulating boom lifts. Full securing and tie-down protocol.</p></div>
+    <div class="move-card"><h3>Containers & Oversized</h3><p>Shipping containers, storage units, gang boxes, job boxes, and oversized loads up to 40,000 lbs.</p></div>
+  </div>
+</div></section>
+
+<!-- FLEET GALLERY -->
+<section class="fleet" id="fleet"><div class="container">
+  <div class="section-label">Our Equipment</div>
+  <h2 class="section-title">The Fleet</h2>
+  <div class="fleet-grid">
+    <div class="fleet-photo fleet-wide"><img src="/img/freightliner-trailer.jpg" alt="Freightliner with Kalyn Siebert Landoll trailer" loading="lazy" /><div class="fleet-cap">Freightliner with Kalyn Siebert Landoll Trailer</div></div>
+    <div class="fleet-photo"><img src="/img/excavator-boomlift.jpg" alt="CAT excavator and boom lift loaded at subdivision" loading="lazy" /><div class="fleet-cap">Excavator + Boom Lift — Subdivision Move</div></div>
+    <div class="fleet-photo"><img src="/img/skidsteer-loading.jpg" alt="Case TR340 and backhoe loading on trailer" loading="lazy" /><div class="fleet-cap">Skid Steer + Backhoe Loading</div></div>
+    <div class="fleet-photo fleet-wide"><img src="/img/fleet-lineup.jpg" alt="Stinger Heavy Haul fleet lineup in Flint Michigan" loading="lazy" /><div class="fleet-cap">Fleet Lineup — Flint, Michigan</div></div>
+    <div class="fleet-photo"><img src="/img/container-haul.jpg" alt="Freightliner hauling shipping container" loading="lazy" /><div class="fleet-cap">Container Transport</div></div>
+    <div class="fleet-photo"><img src="/img/truck-rv-haul.jpg" alt="Volvo semi hauling truck and RV" loading="lazy" /><div class="fleet-cap">Multi-Vehicle Transport</div></div>
+  </div>
+  <div class="fleet-stats">
+    <div class="fs"><strong>15+ Trucks</strong><span>Semis, flatbeds, and recovery units</span></div>
+    <div class="fs"><strong>DOT Authorized</strong><span>USDOT #2573313 · MC #1690083</span></div>
+    <div class="fs"><strong>Fully Insured</strong><span>Cargo, liability, workers' comp. COI on request.</span></div>
+    <div class="fs"><strong>Flint-Based</strong><span>Local dispatch — fastest response in Mid-Michigan</span></div>
+  </div>
+</div></section>
+
+<!-- BUILDER SERVICES -->
+<section class="builders" id="builders"><div class="container"><div class="builders-grid">
+  <div class="builders-text">
+    <div class="section-label" style="text-align:left;">For Purchasing Managers</div>
+    <h2 class="section-title" style="text-align:left;margin-bottom:20px;">Builder & Contractor Services</h2>
+    <p>We provide dedicated equipment transport for residential and commercial construction operations across Southeast Michigan. Our fleet handles recurring scheduled routes between subdivisions, equipment yards, and job sites — not one-off calls from a dispatch board.</p>
+    <ul class="bl">
+      <li>Dedicated equipment moves for active job sites</li>
+      <li>Recurring scheduled routes between subdivisions and equipment yards</li>
+      <li>Same-day and next-day dispatch available</li>
+      <li>Flat-rate per-move pricing — firm quote before we roll</li>
+      <li>Full insurance with Certificate of Insurance on request</li>
+      <li>Serving Genesee, Oakland, Livingston, Washtenaw, Lapeer, Shiawassee, and Saginaw counties</li>
+    </ul>
+    <div class="builders-creds">
+      <div class="bc"><span class="bc-label">EIN</span>82-4883580</div>
+      <div class="bc"><span class="bc-label">USDOT</span>2573313</div>
+      <div class="bc"><span class="bc-label">MC</span>1690083</div>
+    </div>
+  </div>
+  <div class="builders-img"><img src="/img/skytrak-subdivision.jpg" alt="SkyTrak at active subdivision" loading="lazy" /></div>
+</div></div></section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing"><div class="container">
+  <div class="section-label">Transparent Pricing</div>
+  <h2 class="section-title">Rate Structure</h2>
+  <p class="pricing-sub">Portal-to-portal mileage. One flat per-mile rate — no separate deadhead charges. Firm quote before we roll.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card pc-main">
+      <h3>Base Rates</h3>
+      <div class="rr"><span>Hookup / load fee</span><strong>$300</strong></div>
+      <div class="rr"><span>Per mile (round trip)</span><strong>$4.00/mi</strong></div>
+      <div class="rr"><span>Minimum job charge</span><strong>$400</strong></div>
+    </div>
+    <div class="pricing-card">
+      <h3>Add-Ons</h3>
+      <div class="rr"><span>Additional machine</span><strong>+$150</strong></div>
+      <div class="rr"><span>Gang box / job box</span><strong>+$100</strong></div>
+      <div class="rr"><span>Loose attachments (each)</span><strong>+$50</strong></div>
+    </div>
+    <div class="pricing-card">
+      <h3>Surcharges</h3>
+      <div class="rr"><span>Wait time beyond 30 min</span><strong>$75/hr</strong></div>
+      <div class="rr"><span>After-hours / weekend</span><strong>+50%</strong></div>
+      <div class="rr"><span>Permits & escorts</span><strong>At cost</strong></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- SERVICE AREA -->
+<section class="area"><div class="container">
+  <div class="section-label">Coverage</div>
+  <h2 class="section-title">Service Area</h2>
+  <div class="area-tags">
+    <span class="area-tag at-p">Genesee County</span><span class="area-tag at-p">Oakland County</span><span class="area-tag at-p">Livingston County</span><span class="area-tag at-p">Washtenaw County</span>
+    <span class="area-tag">Lapeer County</span><span class="area-tag">Shiawassee County</span><span class="area-tag">Saginaw County</span><span class="area-tag">Wayne County (Western)</span><span class="area-tag">Macomb County</span>
+  </div>
+  <div class="route-tags"><span class="route-tag">I-75</span><span class="route-tag">I-69</span><span class="route-tag">I-96</span><span class="route-tag">US-23</span><span class="route-tag">I-275</span><span class="route-tag">I-94</span><span class="route-tag">M-59</span></div>
+</div></section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact"><div class="container"><div class="contact-grid">
+  <div class="contact-info">
+    <h2 class="contact-title">Get a Quote</h2>
+    <p>Tell us what you need moved and when. We'll give you a firm price.</p>
+    <a href={PHONE_LINK} class="contact-method"><Fragment set:html={phoneSvg} /><div><strong>{PHONE}</strong><span>24/7 Dispatch</span></div></a>
+    <a href="mailto:admin@itowtruck.com" class="contact-method"><Fragment set:html={mailSvg} /><div><strong>admin@itowtruck.com</strong><span>Quotes & COI Requests</span></div></a>
+    <div class="contact-addr"><strong>iTow and Servicetek LLC</strong><br />2591 Lavelle Rd, Flint, MI 48504<br />USDOT# 2573313 · MC# 1690083</div>
+  </div>
+  <div class="contact-form-wrap">
+    <form class="cf" action="https://formsubmit.co/admin@itowtruck.com" method="POST">
+      <input type="hidden" name="_subject" value="Stinger Heavy Haul — Quote Request" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://towtruck.cv" />
+      <input type="text" name="_honey" style="display:none" />
+      <div class="fg"><label>Name *</label><input type="text" name="name" required placeholder="Your name" /></div>
+      <div class="fg"><label>Company</label><input type="text" name="company" placeholder="Company name" /></div>
+      <div class="fg"><label>Email *</label><input type="email" name="email" required placeholder="your@email.com" /></div>
+      <div class="fg"><label>Phone</label><input type="tel" name="phone" placeholder="(xxx) xxx-xxxx" /></div>
+      <div class="fg fg-full"><label>What do you need moved? *</label><textarea name="details" rows="4" required placeholder="Equipment type, pickup & delivery locations, preferred date..."></textarea></div>
+      <button type="submit" class="btn-primary">Send Quote Request</button>
+    </form>
+  </div>
+</div></div></section>
+
+<footer class="footer"><div class="container"><div class="footer-inner">
+  <div class="footer-brand"><img src="/logo.svg" alt="Stinger Heavy Haul" class="footer-logo" /><div><strong>{BRAND}</strong><br /><span>{TAGLINE}</span></div></div>
+  <p>&copy; {year} iTow and Servicetek LLC. All rights reserved. <a href={PHONE_LINK}>{PHONE}</a></p>
+</div></div></footer>
+
+<div class="mobile-cta"><a href={PHONE_LINK}><Fragment set:html={phoneSvg} />Call {PHONE}</a></div>
+
+<script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"Stinger Heavy Haul","legalName":"iTow and Servicetek LLC","telephone":"+18103945937","email":"admin@itowtruck.com","url":"https://towtruck.cv","address":{"@type":"PostalAddress","streetAddress":"2591 Lavelle Rd","addressLocality":"Flint","addressRegion":"MI","postalCode":"48504","addressCountry":"US"},"areaServed":["Genesee County","Oakland County","Livingston County","Washtenaw County"],"serviceType":["Heavy Equipment Hauling","Construction Equipment Transport","SkyTrak Transport","Telehandler Hauling"],"openingHours":"Mo-Su 00:00-23:59","priceRange":"$$$"})} />
+</Base>
