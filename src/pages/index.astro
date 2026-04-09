@@ -115,11 +115,11 @@ const mailSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
     <h2 class="contact-title">Get a Quote</h2>
     <p>Tell us what you need moved and when. We'll give you a firm price.</p>
     <a href={PHONE_LINK} class="contact-method"><Fragment set:html={phoneSvg} /><div><strong>{PHONE}</strong><span>24/7 Dispatch</span></div></a>
-    <a href="mailto:admin@itowtruck.com" class="contact-method"><Fragment set:html={mailSvg} /><div><strong>admin@itowtruck.com</strong><span>Quotes & COI Requests</span></div></a>
+    <a href="mailto:info@towtruck.cv" class="contact-method"><Fragment set:html={mailSvg} /><div><strong>info@towtruck.cv</strong><span>Quotes & COI Requests</span></div></a>
     <div class="contact-addr"><strong>iTow and Servicetek LLC</strong><br />2591 Lavelle Rd, Flint, MI 48504<br />USDOT# 2573313 · MC# 1690083</div>
   </div>
   <div class="contact-form-wrap">
-    <form class="cf" action="https://formsubmit.co/admin@itowtruck.com" method="POST">
+    <form class="cf" action="https://formsubmit.co/info@towtruck.cv" method="POST">
       <input type="hidden" name="_subject" value="Stinger Heavy Haul — Quote Request" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://towtruck.cv" />
@@ -141,5 +141,5 @@ const mailSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 
 <div class="mobile-cta"><a href={PHONE_LINK}><Fragment set:html={phoneSvg} />Call {PHONE}</a></div>
 
-<script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"Stinger Heavy Haul","legalName":"iTow and Servicetek LLC","telephone":"+18103945937","email":"admin@itowtruck.com","url":"https://towtruck.cv","address":{"@type":"PostalAddress","streetAddress":"2591 Lavelle Rd","addressLocality":"Flint","addressRegion":"MI","postalCode":"48504","addressCountry":"US"},"areaServed":["Flint","Genesee County","Grand Blanc","Fenton","Davison","Burton","Flushing","Swartz Creek"],"serviceType":["Heavy Equipment Hauling","Construction Equipment Transport","SkyTrak Transport","Telehandler Hauling"],"openingHours":"Mo-Su 00:00-23:59","priceRange":"$$$"})} />
+<script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":"Stinger Heavy Haul","legalName":"iTow and Servicetek LLC","telephone":"+18103945937","email":"info@towtruck.cv","url":"https://towtruck.cv","address":{"@type":"PostalAddress","streetAddress":"2591 Lavelle Rd","addressLocality":"Flint","addressRegion":"MI","postalCode":"48504","addressCountry":"US"},"areaServed":["Flint","Genesee County","Grand Blanc","Fenton","Davison","Burton","Flushing","Swartz Creek"],"serviceType":["Heavy Equipment Hauling","Construction Equipment Transport","SkyTrak Transport","Telehandler Hauling"],"openingHours":"Mo-Su 00:00-23:59","priceRange":"$$$"})} />
 </Base>
